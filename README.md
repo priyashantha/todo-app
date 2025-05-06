@@ -105,3 +105,17 @@ npm run cy:run        # End-to-End tests (Cypress headless)
 
 - [`backend/README.md`](./backend/README.md)
 - [`frontend/README.md`](./frontend/README.md)
+
+## Screenshots
+
+### Desktop View
+
+![Desktop View](./screenshots/desktop.png)
+
+### Tablet View
+
+![Tablet View](./screenshots/tablet.png)
+
+### Mobile View
+
+![Mobile View](./screenshots/mobile.png)
