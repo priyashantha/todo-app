@@ -2,9 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['title', 'description', 'completed'];
+    use HasFactory;
+
+    protected $table = 'task';
+
+    protected $fillable = ['title', 'content', 'completed'];
+
+    protected $attributes = [
+        'completed' => false,
+    ];
 }
