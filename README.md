@@ -23,61 +23,51 @@ A full-stack Dockerized task management app built with Laravel, MySQL, React, an
 
 ## Environment Setup
 
-### Laravel Backend
-
 1. Copy `.env.example` to `.env`:
 
 ```bash
 cp backend/.env.example backend/.env
 ```
 
-2. Generate the application key:
-
-```bash
-docker-compose exec backend php artisan key:generate
-```
-
-3. Laravel will use the default values in `.env`, including:
-   - DB host: `mysql`
-   - DB name: `todo`
-   - DB username: `root`
-   - DB password: `root`
-
-> No need to update `.env` manually if using Docker defaults.
-
----
-
-### React Frontend
-
-Create a `.env` file in the `frontend` directory:
+2. Create a `.env` file in the `frontend` directory:
 
 ```env
 VITE_API_URL=http://localhost:8000/api
 ```
 
----
-
-## Docker Setup Instructions
-
-### 1. Build and start all containers
+3. Build and start all containers:
 
 ```bash
 docker-compose up --build -d
 ```
 
-### 2. Install Laravel dependencies
+4. Install Laravel dependencies:
 
 ```bash
 docker run --rm -v $(pwd)/backend:/app -w /app composer composer install
 ```
 
-### 3. Run Laravel database migrations
+5. Generate the application key:
+
+```bash
+docker-compose exec backend php artisan key:generate
+```
+
+6. Run Laravel database migrations:
 
 ```bash
 docker-compose exec backend php artisan migrate
 ```
 
-### 4. Open the app
+> Laravel will use the default values in `.env`, including:
+> - DB host: `mysql`
+> - DB name: `todo`
+> - DB username: `root`
+> - DB password: `root`
+
+---
+
+## Open the App
 
 - Frontend: [http://localhost:5173](http://localhost:5173)
 - API: [http://localhost:8000/api/tasks](http://localhost:8000/api/tasks)
@@ -86,7 +76,6 @@ docker-compose exec backend php artisan migrate
 
 ## Running Tests
 
-### Backend – Laravel (PHPUnit)
 
 ```bash
 docker-compose exec backend php artisan test
@@ -101,9 +90,11 @@ XDEBUG_MODE=coverage php artisan test --coverage-html=coverage
 
 ### Frontend – React (Vitest + Cypress)
 
+#### Using local npm:
+
 ```bash
 cd frontend
-npm run test          # Unit and integration tests
+npm install
 npm run cy:open       # End-to-End tests (Cypress interactive)
 npm run cy:run        # End-to-End tests (Cypress headless)
 ```
